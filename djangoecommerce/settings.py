@@ -24,7 +24,7 @@ PROJET_ROOT = os.path.dirname(os.path.abspath(__file__))
 SECRET_KEY = 'dl7-b2l!s0qe7jfphxo)ft=&f@!c!&tv_yem$&=j#%x31!^a#k'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = []
 
@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'core',
+    'catalog',
 ]
 
 MIDDLEWARE = [
@@ -65,6 +66,10 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+
+                # my apps
+                'catalog.context_processors.categories',
+                                            
             ],
         },
     },
@@ -123,6 +128,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 db_from_env = dj_database_url.config(conn_max_age=500)
+
 DATABASES['default'].update(db_from_env)
 
 SECURITY_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
@@ -130,7 +136,6 @@ SECURITY_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 ALLOWED_HOSTS = ['*']
 
 STATIC_ROOT = os.path.join(PROJET_ROOT, 'staticfiles')
-
 
 try:
     from .local_settings import *

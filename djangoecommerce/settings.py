@@ -24,7 +24,7 @@ PROJET_ROOT = os.path.dirname(os.path.abspath(__file__))
 SECRET_KEY = 'dl7-b2l!s0qe7jfphxo)ft=&f@!c!&tv_yem$&=j#%x31!^a#k'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = []
 
@@ -45,6 +45,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',

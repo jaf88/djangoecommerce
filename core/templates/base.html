@@ -28,9 +28,9 @@
               <a href="{% url 'index' %}">Início</a>
             </li>
             <li class="dropdown">
-              
-              <a class="dropdown-toggle" data-toggle="dropdown" 
-                href="{% url 'catalog:product_list' %}" id="download"> Categorias 
+
+              <a class="dropdown-toggle" data-toggle="dropdown"
+                href="{% url 'catalog:product_list' %}" id="download"> Categorias
               <span class="caret"></span></a>
               <ul class="dropdown-menu" aria-labelledby="download">
               {% for category in categories %}
@@ -43,13 +43,18 @@
 			</li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="#">Minha Conta</a></li>
+            {% if user.is_authenticated %}
+            <li><a href="{% url 'logout' %}"> Sair </a></li>
+            <li><a href="#">{{ user }} - Minha Conta</a></li>
+            {% else %}
+            <li><a href="{% url 'login' %}"> Entrar</a></li>
+            {% endif %}
           </ul>
         </div>
       </div>
     </div>
     <div class="container">
-		
+
 		{% block container %}
 		{% endblock %}
 

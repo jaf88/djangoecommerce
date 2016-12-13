@@ -21,7 +21,7 @@ PROJET_ROOT = os.path.dirname(os.path.abspath(__file__))
 # See https://docs.djangoproject.com/en/1.10/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'dl7-b2l!s0qe7jfphxo)ft=&f@!c!&tv_yem$&=j#%x31!^a#k'
+SECRET_KEY = os.getenv('SECRET_KEY', '123')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
@@ -39,6 +39,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    # Libs
+    'widget_tweaks',
+
+    # Apps
     'core',
     'catalog',
 ]
@@ -67,10 +71,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-
                 # my apps
                 'catalog.context_processors.categories',
-                                            
             ],
         },
     },
@@ -137,6 +139,12 @@ SECURITY_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 ALLOWED_HOSTS = ['*']
 
 STATIC_ROOT = os.path.join(PROJET_ROOT, 'staticfiles')
+
+# E-mail
+EMAIL_HOST = ''
+EMAIL_HOST_USER = ''
+EMAIL_HOST_PASSWORD = ''
+DEFAULT_FROM_EMAIL = 'admin@djangoecommerce.com'
 
 try:
     from .local_settings import *
